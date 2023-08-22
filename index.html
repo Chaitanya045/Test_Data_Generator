@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Data Generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- As a heading -->
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Test Data Generator</span>
+      </div>
+    </nav>
+    <div id="fields_container">
+      <div class="fields">
+        <label class="fieldLabels" for="Field1">Field 1:</label>
+
+        <select name="Feild1" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+      
+      <div class="fields">
+        <label for="Field2" class="fieldLabels">Field 2:</label>
+        
+        <select name="Feild2" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+      
+      <div class="fields">
+        <label for="Field3" class="fieldLabels">Field 3:</label>
+        
+        <select name="Feild3" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+      
+      <div class="fields">
+        <label for="Field4" class="fieldLabels">Field 4:</label>
+        
+        <select name="Feild4" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+      
+      <div class="fields">
+        <label for="Field5" class="fieldLabels">Field 5:</label>
+        
+        <select name="Feild5" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+      
+      <div class="fields">
+        <label for="Field6" class="fieldLabels">Field 6:</label>
+        
+        <select name="Feild6" class="inputfield">
+          <option value="select">-- Select --</option>
+          <option value="First Name">First Name</option>
+          <option value="Middle Name">Middle Name</option>
+          <option value="Last Name">Last Name</option>
+          <option value="User ID">User ID</option>
+          <option value="Email ID">Email ID</option>
+          <option value="Password">Password</option>
+          <option value="Date of Birth">Date of Birth</option>
+          <option value="Gender">Gender</option>
+          <option value="Address">Address</option>
+        </select>
+        <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
+      </div>
+    </div>
+
+    <div class="misc-buttons">
+      <button type="button" class="btn btn-secondary" id="addMoreFields">
+        Add More Fields....
+      </button>
+    </div>
+
+    <div class="scroll-container">
+      <input type="number" step="1" min="1" id="num-records" placeholder="Number of Records" />
+    </div>
+    <div class="file-formatCont">
+      <div class="file-format">
+        <button type="button" class="btn btn-secondary csv">.CSV</button>
+      </div>
+      <div class="file-format">
+        <button type="button" class="btn btn-secondary json">.JSON</button>
+      </div>
+      <div class="file-format">
+        <button type="button" class="btn btn-secondary txt" id="generate-data-btn">.TXT</button>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/faker@5.5.3/dist/faker.min.js"></script>
+  </body>
+</html>

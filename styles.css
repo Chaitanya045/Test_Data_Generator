@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    border: 0;
+}
+
+#fields_container{
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    margin: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.fields{
+    display: flex;
+    text-align: center;
+    
+}
+
+.file-formatCont{
+    margin: 3rem;
+    margin-right: 43%;
+    margin-left: 43%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.csv{
+    background-color: aqua;
+    margin: 5%;
+    width: auto;
+}
+
+.json{
+    background-color: blue;
+    margin: 5%;
+    width: auto;
+}
+
+.txt{
+    background-color: aquamarine;
+    margin: 5%;
+    width: auto;
+}
+
+.misc-buttons{
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+    height: 3rem;
+}
+
+#addMoreFields{
+    width: 14rem;
+}
+
+.scroll-container{
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+    margin-right: 43%;
+    margin-left: 43%;
+    height: 2.5rem;
+    width: 14%;
+}
+
+.inputfield{
+    margin: 0.5rem;
+}
+
+label{
+    padding-top: 0.5rem;
+}
+
+input{
+    width: 14rem;
+    border-radius: 0.4rem;
+}
