@@ -1,6 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
   let fieldsContainer = document.getElementById("fields_container");
   let addBtn = document.getElementById("addMoreFields");
+  let fields = document.getElementsByClassName("fields");
+
+  fields = Array.from(fields);
+
+  fieldsContainer.addEventListener("change", function (event) {
+    let target = event.target;
+    if (target.classList.contains("inputfield")) {
+      let dateRangeInputs = target
+        .closest(".fields")
+        .querySelector(".date-range-inputs");
+      if (target.value === "Date of Birth") {
+        dateRangeInputs.style.display = "block";
+      } else {
+        dateRangeInputs.style.display = "none";
+      }
+    }
+  });
+
   fieldsContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("fa-trash")) {
       let field = event.target.closest(".fields");
@@ -22,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let fieldLabel = fields.querySelector(".fieldLabels");
       dropdown.setAttribute("name", "Field" + (index + 1));
       fieldLabel.innerText = "Field " + (index + 1) + ":";
+      fieldLabel.setAttribute("for", "Field" + (index + 1));
     });
   }
 
@@ -44,11 +63,32 @@ document.addEventListener("DOMContentLoaded", function () {
      <option value="Address">Address</option>
    </select>
 
+   <div class="date-range-inputs" style="display: none;">
+          <label for="start-date">Start Date:</label>
+          <input type="date" class="start-date">
+          <label for="end-date">End Date:</label>
+          <input type="date" class="end-date">
+   </div>
+
    <button class="btn delete-btn"><i class="fa fa-trash"></i></button>
    `;
 
     fieldsContainer.appendChild(newFieldsDiv);
     renumberFields();
+
+    fieldsContainer.addEventListener("change", function (event) {
+      let target = event.target;
+      if (target.classList.contains("inputfield")) {
+        let dateRangeInputs = target
+          .closest(".fields")
+          .querySelector(".date-range-inputs");
+        if (target.value === "Date of Birth") {
+          dateRangeInputs.style.display = "block";
+        } else {
+          dateRangeInputs.style.display = "none";
+        }
+      }
+    });
   }
 
   function generateTestData() {
@@ -99,6 +139,20 @@ document.addEventListener("DOMContentLoaded", function () {
           case "Gender":
             let genderOptions = ["Male", "Female", "Non-binary", "Others"];
             fieldData.push(faker.random.arrayElement(genderOptions));
+            break;
+
+          case "Date of Birth":
+            let startDateInput =
+              dropdown.nextElementSibling.querySelector(".start-date");
+            let endDateInput =
+              dropdown.nextElementSibling.querySelector(".end-date");
+
+            if (startDateInput && endDateInput) {
+              let startDate = new Date(startDateInput.value);
+              let endDate = new Date(endDateInput.value);
+              let randomBirthdate = faker.date.between(startDate, endDate);
+              fieldData.push(randomBirthdate.toLocaleDateString());
+            }
             break;
 
           default:
