@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function generateTestData() {
+  function generateTestData(fileFormat) {
     let allDropdowns = document.querySelectorAll(".inputfield");
     console.log(allDropdowns);
     let numRecords = parseInt(document.getElementById("num-records").value, 10);
@@ -155,17 +155,214 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             break;
 
+          case "Email ID":
+            fieldData.push(faker.internet.email());
+            break;
+
           default:
             alert("Invalid input");
             break;
         }
       }
       testData.push(fieldData);
+
     });
-    console.log(testData);
+    switch (fileFormat) {
+      case ".CSV":
+        generateCsvFile(allDropdowns, testData, numRecords);
+        break;
+      case ".JSON":
+        generateJsonFile(allDropdowns, testData, numRecords);
+        break;
+      case ".TXT":
+        generateTextFile(allDropdowns, testData, numRecords);
+        break;
+      case ".XML":
+        generateXmlFile(allDropdowns, testData, numRecords);
+        break;
+    }
+    // console.log(testData);
   }
-  let generateData = document.getElementById("generate-data-btn");
-  generateData.addEventListener("click", function () {
-    generateTestData();
+
+  let generateDataXML = document.getElementById("xml");
+  generateDataXML.addEventListener("click", function () {
+    generateTestData(generateDataXML.textContent);
   });
+
+  let generateDataTXT = document.getElementById("txt");
+  generateDataTXT.addEventListener("click", function () {
+    generateTestData(generateDataTXT.textContent);
+  });
+
+  let generateDataJSON = document.getElementById("json");
+  generateDataJSON.addEventListener("click", function () {
+    generateTestData(generateDataJSON.textContent);
+  });
+
+  let generateDataCSV = document.getElementById("csv");
+  generateDataCSV.addEventListener("click", function () {
+    generateTestData(generateDataCSV.textContent);
+  });
+
+  function generateTextFile(allDropdowns, testData, numRecords) {
+    // Text File
+    let fieldLabels = Array.from(allDropdowns).map(
+      (dropdown) => dropdown.options[dropdown.selectedIndex].text
+    );
+
+    // Create lines with data
+    let dataLines = [];
+    for (let i = 0; i < numRecords; i++) {
+      let lineData = [];
+      testData.forEach((data) => {
+        lineData.push(data[i]);
+      });
+      dataLines.push(lineData.join(", "));
+    }
+    // Combine field labels line and data lines
+    let testDataText =
+      "Field Labels: " + fieldLabels.join(", ") + "\n" + dataLines.join("\n");
+
+    // Create a Blob with the text data
+    let blob = new Blob([testDataText], { type: "text/plain" });
+
+    // Create a URL for the Blob
+    let url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    let downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "test_data.txt"; // Specify the file name
+    downloadLink.textContent = "Download Test Data"; // Optional: Add text to the link
+
+    // Trigger a click event on the download link
+    downloadLink.click();
+
+    // Clean up the URL object
+    window.URL.revokeObjectURL(url);
+  }
+
+  function generateXmlFile(allDropdowns, testData, numRecords) {
+    // XML File
+
+    let fieldLabels = Array.from(allDropdowns).map(
+      (dropdown) => dropdown.options[dropdown.selectedIndex].text
+    );
+
+    // Create the XML document
+    let xmlDoc = document.implementation.createDocument(null, "TestData");
+
+    for (let i = 0; i < numRecords; i++) {
+      let dataElement = xmlDoc.createElement("Data");
+
+      testData.forEach((data, index) => {
+        // Convert field label to a valid XML element name
+        let fieldLabel = fieldLabels[index].replace(/\s+/g, "_"); // Replace spaces with underscores
+        fieldLabel = fieldLabel.replace(/\W/g, ""); // Remove non-alphanumeric characters
+
+        let fieldElement = xmlDoc.createElement(fieldLabel);
+        fieldElement.textContent = data[i];
+        dataElement.appendChild(fieldElement);
+      });
+
+      xmlDoc.documentElement.appendChild(dataElement);
+    }
+
+    // Convert the XML document to a string
+    let xmlString = new XMLSerializer().serializeToString(xmlDoc);
+
+    // Create a Blob with the XML data
+    let blob = new Blob([xmlString], { type: "application/xml" });
+
+    // Create a URL for the Blob
+    let url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    let downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "test_data.xml"; // Specify the file name
+    downloadLink.textContent = "Download Test Data XML"; // Optional: Add text to the link
+
+    // Trigger a click event on the download link
+    downloadLink.click();
+
+    // Clean up the URL object
+    window.URL.revokeObjectURL(url);
+  }
+
+  function generateCsvFile(allDropdowns, testData, numRecords) {
+    // CSV File
+
+    let fieldLabels = Array.from(allDropdowns).map(
+      (dropdown) => dropdown.options[dropdown.selectedIndex].text
+    );
+
+    // Create the CSV header row with field labels
+    let csvHeader = fieldLabels.join(",");
+
+    // Create lines with data
+    let csvData = [];
+    for (let i = 0; i < numRecords; i++) {
+      let lineData = testData.map((data) => data[i]);
+      csvData.push(lineData.join(","));
+    }
+
+    // Combine the CSV header and data
+    let csvText = [csvHeader, ...csvData].join("\n");
+
+    // Create a Blob with the CSV data
+    let blob = new Blob([csvText], { type: "text/csv" });
+
+    // Create a URL for the Blob
+    let url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    let downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "test_data.csv"; // Specify the file name
+    downloadLink.textContent = "Download Test Data CSV"; // Optional: Add text to the link
+
+    // Trigger a click event on the download link
+    downloadLink.click();
+
+    // Clean up the URL object
+    window.URL.revokeObjectURL(url);
+  }
+
+  function generateJsonFile(allDropdowns, testData, numRecords) {
+    // JSON File
+
+    // Create an array of data objects
+    let dataObjects = [];
+    for (let i = 0; i < numRecords; i++) {
+      let dataObject = {};
+      testData.forEach((data, index) => {
+        dataObject[
+          allDropdowns[index].options[allDropdowns[index].selectedIndex].text
+        ] = data[i];
+      });
+      dataObjects.push(dataObject);
+    }
+
+    // Convert data objects array to a JSON string
+    let jsonDataString = JSON.stringify(dataObjects, null, 2); // The third argument adds indentation for readability
+
+    // Create a Blob with the JSON data
+    let blob = new Blob([jsonDataString], { type: "application/json" });
+
+    // Create a URL for the Blob
+    let url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    let downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "test_data.json"; // Specify the file name
+    downloadLink.textContent = "Download Test Data JSON"; // Optional: Add text to the link
+
+    // Trigger a click event on the download link
+    downloadLink.click();
+
+    // Clean up the URL object
+    window.URL.revokeObjectURL(url);
+  }
 });

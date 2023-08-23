@@ -23,8 +23,8 @@ body{
 
 .file-formatCont{
     margin: 3rem;
-    margin-right: 43%;
-    margin-left: 43%;
+    margin-right: 40%;
+    margin-left: 40%;
     height: 3rem;
     display: flex;
     justify-content: center;
@@ -32,19 +32,19 @@ body{
     flex-wrap: wrap;
 }
 
-.csv{
+#csv{
     background-color: aqua;
     margin: 5%;
     width: auto;
 }
 
-.json{
+#json{
     background-color: blue;
     margin: 5%;
     width: auto;
 }
 
-.txt{
+#txt{
     background-color: aquamarine;
     margin: 5%;
     width: auto;
