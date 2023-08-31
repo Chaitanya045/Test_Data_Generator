@@ -186,21 +186,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let generateDataXML = document.getElementById("xml");
   generateDataXML.addEventListener("click", function () {
+    triggerDownloadAnimation("download-animation");
     generateTestData(generateDataXML.textContent);
   });
 
   let generateDataTXT = document.getElementById("txt");
   generateDataTXT.addEventListener("click", function () {
+    triggerDownloadAnimation("download-animation");
     generateTestData(generateDataTXT.textContent);
   });
 
   let generateDataJSON = document.getElementById("json");
   generateDataJSON.addEventListener("click", function () {
+    triggerDownloadAnimation("download-animation");
     generateTestData(generateDataJSON.textContent);
   });
 
   let generateDataCSV = document.getElementById("csv");
   generateDataCSV.addEventListener("click", function () {
+    triggerDownloadAnimation("download-animation");
     generateTestData(generateDataCSV.textContent);
   });
 
@@ -364,5 +368,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Clean up the URL object
     window.URL.revokeObjectURL(url);
+  }
+
+   // Function to trigger download animation
+   function triggerDownloadAnimation(animationClass) {
+    let title = document.querySelector(".navbar");
+    title.classList.add(animationClass);
+
+    // Simulate download delay (remove this setTimeout in your actual code)
+    setTimeout(function () {
+      title.classList.remove(animationClass);
+    }, 1000); // Adjust the delay time based on your animation duration
   }
 });

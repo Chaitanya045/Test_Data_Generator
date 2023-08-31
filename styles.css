@@ -5,6 +5,7 @@
 body{
     margin: 0;
     border: 0;
+    background-color: #001C30;
 }
 
 #fields_container{
@@ -18,7 +19,7 @@ body{
 .fields{
     display: flex;
     text-align: center;
-    
+
 }
 
 .file-formatCont{
@@ -33,21 +34,31 @@ body{
 }
 
 #csv{
-    background-color: aqua;
+    background-color: #5C8374;
     margin: 5%;
     width: auto;
+    color: #001C30;
 }
 
 #json{
-    background-color: blue;
+    background-color: #FFC7EA;
     margin: 5%;
     width: auto;
+    color: #001C30;
 }
 
 #txt{
-    background-color: aquamarine;
+    background-color: #B9B4C7;
     margin: 5%;
     width: auto;
+    color: #001C30;
+}
+
+#xml{
+    background-color: #EEE0C9;
+    margin: 5%;
+    width: auto;
+    color: #001C30;
 }
 
 .misc-buttons{
@@ -59,6 +70,12 @@ body{
 
 #addMoreFields{
     width: 14rem;
+    color: #001C30;
+    background-color: #64CCC5;
+}
+
+#addMoreFields:hover{
+    background-color: #176B87;
 }
 
 .scroll-container{
@@ -75,11 +92,113 @@ body{
     margin: 0.5rem;
 }
 
+select{
+    appearance: none;
+    padding: 8px;
+    border: 2px solid #333;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    background-color: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3;
+}
+
+select:focus{
+    border-color: #555;
+    outline: none;
+}
+
+select::after{
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #333;
+}
+
+select:hover{
+    border-color: #555;
+}
+
+select:disabled{
+    background-color: #f1f1f1;
+    color: #999;
+    cursor: not-allowed;
+}
+
+select:focus+::after{
+    color: #555;
+}
+
 label{
     padding-top: 0.5rem;
+    display: inline-block;
+    white-space: nowrap;
+    padding-top: 5.5%;
 }
 
 input{
     width: 14rem;
     border-radius: 0.4rem;
 }
+
+.fieldLabels{
+    color:white;
+}
+
+.delete-btn{
+    background-color: #DAFFFB;
+    margin: 4.5%;
+    transition: background-color 0.3s;
+    color: #001C30;
+}
+
+.delete-btn:hover{
+    background-color: #176B87;
+}
+
+
+#num-records{
+    color: #001C30;
+    background-color: #DAFFFB;
+}
+
+.navbar{
+    background-color: #DAFFFB;
+    color: #001C30;
+    padding: 10px;
+    text-align: center;
+}
+
+@keyframes downloadAnimation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(7px);
+    }
+  }
+
+  /* Applying animation to the title */
+  .navbar h1 {
+    animation: downloadAnimation 1s infinite;
+  }
+
+  /* Download button styling */
+  .download-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* Download animation class */
+  .download-animation {
+    animation: downloadAnimation 1s infinite;
+  }
