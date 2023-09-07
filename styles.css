@@ -22,6 +22,15 @@ body{
 
 }
 
+.maskContainer{
+    color: white;
+}
+
+.mask{
+    display: flex;
+    width: 80%;
+}
+
 .file-formatCont{
     margin: 3rem;
     margin-right: 40%;
