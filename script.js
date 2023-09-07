@@ -160,9 +160,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
           case "Address":
             fieldData.push(
-              faker.fake(
-                "{{address.streetAddress}}, {{address.city}}, {{address.stateAbbr}}, {{address.zipCode}}"
-              )
+              faker.fake("{{address.streetAddress}}") +
+                "  " +
+                faker.fake("{{address.city}}") +
+                "  " +
+                faker.fake("{{address.stateAbbr}}") +
+                "  " +
+                faker.fake("{{address.zipCode}}")
             );
             break;
 
@@ -214,7 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
             break;
 
           default:
-            alert("Invalid input");
             break;
         }
       }
@@ -363,21 +366,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // CSV File
 
     let fieldLabels = Array.from(allDropdowns).map(
-      (dropdown) => dropdown.options[dropdown.selectedIndex].text
+        (dropdown) => dropdown.options[dropdown.selectedIndex].text
     );
-
-    // Create the CSV header row with field labels
-    let csvHeader = fieldLabels.join(",");
 
     // Create lines with data
     let csvData = [];
     for (let i = 0; i < numRecords; i++) {
-      let lineData = testData.map((data) => data[i]);
-      csvData.push(lineData.join(","));
+        let lineData = testData.map((data) => data[i]);
+        csvData.push(lineData.join(","));
     }
 
     // Combine the CSV header and data
-    let csvText = [csvHeader, ...csvData].join("\n");
+    let csvText = [fieldLabels.join(","), ...csvData].join("\n");
 
     // Create a Blob with the CSV data
     let blob = new Blob([csvText], { type: "text/csv" });
@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Clean up the URL object
     window.URL.revokeObjectURL(url);
-  }
+}
 
   function generateJsonFile(allDropdowns, testData, numRecords) {
     // JSON File
