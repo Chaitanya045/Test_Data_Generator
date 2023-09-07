@@ -250,18 +250,27 @@ document.addEventListener("DOMContentLoaded", function () {
   generateDataTXT.addEventListener("click", function () {
     triggerDownloadAnimation("download-animation");
     generateTestData(generateDataTXT.textContent);
+    if (flag == 1) {
+      generateAndDownloadKeyFile();
+    }
   });
 
   let generateDataJSON = document.getElementById("json");
   generateDataJSON.addEventListener("click", function () {
     triggerDownloadAnimation("download-animation");
     generateTestData(generateDataJSON.textContent);
+    if (flag == 1) {
+      generateAndDownloadKeyFile();
+    }
   });
 
   let generateDataCSV = document.getElementById("csv");
   generateDataCSV.addEventListener("click", function () {
     triggerDownloadAnimation("download-animation");
     generateTestData(generateDataCSV.textContent);
+    if (flag == 1) {
+      generateAndDownloadKeyFile();
+    }
   });
 
   function generateTextFile(allDropdowns, testData, numRecords) {
