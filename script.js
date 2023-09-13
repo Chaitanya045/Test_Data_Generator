@@ -88,9 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
    <div class="date-range-inputs" style="display: none;">
           <label for="start-date">Start Date:</label>
-          <input type="date" class="start-date">
+          <input type="date" class="start-date" max="9999-12-31" min="1900-01-01">
           <label for="end-date">End Date:</label>
-          <input type="date" class="end-date">
+          <input type="date" class="end-date" max="9999-12-31" min="1900-01-01">
    </div>
    <div class="maskContainer" style="display: none;">
     <label for="checkbox">Mask:</label>
