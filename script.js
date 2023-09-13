@@ -105,16 +105,21 @@ document.addEventListener("DOMContentLoaded", function () {
     fieldsContainer.addEventListener("change", function (event) {
       let target = event.target;
       if (target.classList.contains("inputfield")) {
-        let dateRangeInputs = target
-          .closest(".fields")
-          .querySelector(".date-range-inputs");
-        if (target.value === "Date of Birth") {
-          dateRangeInputs.style.display = "block";
-        } else {
-          dateRangeInputs.style.display = "none";
-        }
+          let dateRangeInputs = target.closest(".fields").querySelector(".date-range-inputs");
+          if (target.value === "Date of Birth") {
+              dateRangeInputs.style.display = "block";
+              // Limit the year input to 2 digits
+              let endDateInput = dateRangeInputs.querySelector(".end-date");
+              endDateInput.addEventListener("input", function () {
+                  if (endDateInput.value.length > 2) {
+                      endDateInput.value = endDateInput.value.slice(0, 2);
+                  }
+              });
+          } else {
+              dateRangeInputs.style.display = "none";
+          }
       }
-    });
+  });
   }
 
   function generateTestData(fileFormat) {
@@ -488,6 +493,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       return originalData;
     }
+    const maskedData = 'Enter_the_maskedData);
+    const key = 'Enter_the_key';
+
+    const originalData = unmaskData(maskedData, key);
+    console.log(originalData);
 
     #JAVA
 
@@ -529,7 +539,11 @@ def unmask_data(masked_data, key):
         original_data.append(original_char)
 
     return ''.join(original_data)
-
+    masked_data = 'Enter_the_maskedData'
+    key = 'Enter_the_key'
+    
+    original_data = unmask_data(masked_data,key)
+    print(original_data)
     `;
 
     // Create a Blob with the text data
